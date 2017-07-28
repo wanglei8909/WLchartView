@@ -6,7 +6,7 @@
 //  Copyright © 2017年 wanglei. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "HNBaseViewController.h"
 
 #define SafePerformSelector(Stuff) \
 do { \
@@ -16,13 +16,17 @@ Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
 
-@interface BaseViewController ()
+@interface HNBaseViewController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, retain) UIImage *mTopImage;
+@property (nonatomic, assign) int mFontSize; //title 字体大小
+@property (nonatomic, readonly) UILabel *mlbTitle;
 
 @end
 
-@implementation BaseViewController
+@implementation HNBaseViewController
 
-@synthesize mlbTitle, delegate, OnGoBack, mTopColor, mTopImage, mTitleColor, mFontSize, isCustomTopBar, customTopBar;
+@synthesize mlbTitle, delegate, goBackSelector, mTopColor, mTopImage, mTitleColor, mFontSize, isCustomTopBar, customTopBar;
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -42,7 +46,7 @@ _Pragma("clang diagnostic pop") \
 }
 
 - (void)Commit{
-    mFontSize = 20;
+    mFontSize = 19;
     mTopImage = [UIImage imageNamed:@"navimage"];
     mTitleColor = [UIColor whiteColor];
     isCustomTopBar = NO;
@@ -65,20 +69,19 @@ _Pragma("clang diagnostic pop") \
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.translucent = NO;
     
-    mlbTitle = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, self.view.frame.size.width-100, 44)];
+    mlbTitle = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, self.view.frame.size.width-120, 44)];
     mlbTitle.backgroundColor = [UIColor clearColor];
-    mlbTitle.font = [UIFont fontWithName:@"Helvetica-Light" size:mFontSize];
+    mlbTitle.font = [UIFont systemFontOfSize:mFontSize];
     mlbTitle.textAlignment = NSTextAlignmentCenter;
     mlbTitle.textColor = self.mTitleColor;
     mlbTitle.text = self.title;
     self.navigationItem.titleView = mlbTitle;
     
-    
-    [self AddLeftImageBtn:nil target:nil action:nil];
-    [self AddRightImageBtn:nil target:nil action:nil];
+    [self addLeftImageBtn:nil target:nil action:nil];
+    [self addRightImageBtn:nil target:nil action:nil];
 
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     
 //    UIScrollView *scr = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 70)];
@@ -86,31 +89,35 @@ _Pragma("clang diagnostic pop") \
 //    [self.view addSubview:scr];
 }
 
-- (void)UseImageNavigationBack{
+- (void)setMTopColor:(UIColor *)topColor{
+    self.customTopBar.backgroundColor = topColor;
+}
+
+- (void)useNativeNavigationBar{
     isCustomTopBar = NO;
     mTopColor = nil;
     mTopImage = [UIImage imageNamed:@"navimage"];
     if (self.customTopBar) {
         [self.customTopBar removeFromSuperview];
     }
-    [self RefreshNavColor];
+    [self refreshNavColor];
 }
 
 //此方法需要提前设置 mTopColor 的默认值
-- (void)UsePureColorNavigationBack{
-    [self UsePureColorNavigationBack:mTopColor];
+- (void)useCustomNavigationBar{
+    [self useCustomNavigationBar:mTopColor];
 }
 
-- (void)UsePureColorNavigationBack:(UIColor *)color{
+- (void)useCustomNavigationBar:(UIColor *)color{
     isCustomTopBar = YES;
     mTopImage = nil;
     mTopColor = color;
-    [self RefreshNavColor];
+    [self refreshNavColor];
 }
 
-- (void)RefreshNavColor {
+- (void)refreshNavColor {
     if (mTopColor && isCustomTopBar) {
-        [self CustomTopBar];
+        [self addCustomTopBar];
     }
     if (mTopImage && !isCustomTopBar) {
         [self.navigationController.navigationBar setBackgroundImage:mTopImage forBarMetrics:UIBarMetricsDefault];
@@ -120,19 +127,19 @@ _Pragma("clang diagnostic pop") \
     }
 }
 
-- (void)CustomTopBar{
-    customTopBar = [[BaseNavgationView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+- (void)addCustomTopBar{
+    customTopBar = [[HNBaseNavgationView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     customTopBar.backgroundColor = mTopColor;
     [self.view addSubview:customTopBar];
 }
 
-- (void)GoHome {
+- (void)goHome {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)GoBack {
-    if (delegate && OnGoBack) {
-        SafePerformSelector([delegate performSelector:OnGoBack withObject:self]);
+- (void)goBack {
+    if (delegate && goBackSelector) {
+        SafePerformSelector([delegate performSelector:goBackSelector withObject:self]);
     }
     UIViewController *topCtrl = self.navigationController.topViewController;
     if (topCtrl == self) {
@@ -143,49 +150,73 @@ _Pragma("clang diagnostic pop") \
     }
 }
 
+- (void)setTitle:(NSString *)title{
+    if (self.isCustomTopBar) {
+        [self.customTopBar setTitle:title];
+    }else{
+        mlbTitle.text = title;
+    }
+}
+
 - (void)setMTitleColor:(UIColor *)titleColor{
     mTitleColor = titleColor;
-    mlbTitle.textColor = titleColor;
-}
-
-- (void)ClearNavItem {
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
-}
-
-- (void)AddRightTextBtn:(NSString *)name target:(id)target action:(SEL)action {
     if (self.isCustomTopBar) {
-        [self.customTopBar AddRightTextBtn:name target:target action:action];
+        [customTopBar setMTitleColor:titleColor];
     }else{
-        self.navigationItem.rightBarButtonItem = [self GetTextBarItem:name target:target action:action];
+        mlbTitle.textColor = titleColor;
+        UIButton *leftButton = self.navigationItem.leftBarButtonItem.customView;
+        if (leftButton && [leftButton isKindOfClass:[UIButton class]]) {
+            [leftButton setTitleColor:titleColor forState:UIControlStateNormal];
+        }
+        UIButton *rightButton = self.navigationItem.rightBarButtonItem.customView;
+        if (rightButton && [rightButton isKindOfClass:[UIButton class]]) {
+            [rightButton setTitleColor:titleColor forState:UIControlStateNormal];
+        }
     }
 }
 
-- (void)AddLeftTextBtn:(NSString *)name target:(id)target action:(SEL)action{
+- (void)clearNavItem {
     if (self.isCustomTopBar) {
-        [self.customTopBar AddLeftTextBtn:name target:target action:action];
+        [customTopBar clearNavItem];
     }else{
-        self.navigationItem.leftBarButtonItem = [self GetTextBarItem:name target:target action:action];
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
     }
 }
 
-- (void)AddRightImageBtn:(UIImage *)image target:(id)target action:(SEL)action  {
+- (void)addRightTextBtn:(NSString *)name target:(id)target action:(SEL)action {
     if (self.isCustomTopBar) {
-        [self.customTopBar AddRightImageBtn:image target:target action:action];
+        [self.customTopBar addRightTextBtn:name target:target action:action];
     }else{
-        self.navigationItem.rightBarButtonItem = [self GetImageBarItem:image target:target action:action];
+        self.navigationItem.rightBarButtonItem = [self getTextBarItem:name target:target action:action];
     }
 }
 
-- (void)AddLeftImageBtn:(UIImage *)image target:(id)target action:(SEL)action {
+- (void)addLeftTextBtn:(NSString *)name target:(id)target action:(SEL)action{
     if (self.isCustomTopBar) {
-        [self.customTopBar AddLeftImageBtn:image target:target action:action];
+        [self.customTopBar addLeftTextBtn:name target:target action:action];
     }else{
-        self.navigationItem.leftBarButtonItem = [self GetImageBarItem:image target:target action:action];
+        self.navigationItem.leftBarButtonItem = [self getTextBarItem:name target:target action:action];
     }
 }
 
-- (UIBarButtonItem *)GetTextBarItem:(NSString *)name target:(id)target action:(SEL)action {
+- (void)addRightImageBtn:(UIImage *)image target:(id)target action:(SEL)action  {
+    if (self.isCustomTopBar) {
+        [self.customTopBar addRightImageBtn:image target:target action:action];
+    }else{
+        self.navigationItem.rightBarButtonItem = [self getImageBarItem:image target:target action:action];
+    }
+}
+
+- (void)addLeftImageBtn:(UIImage *)image target:(id)target action:(SEL)action {
+    if (self.isCustomTopBar) {
+        [self.customTopBar addLeftImageBtn:image target:target action:action];
+    }else{
+        self.navigationItem.leftBarButtonItem = [self getImageBarItem:image target:target action:action];
+    }
+}
+
+- (UIBarButtonItem *)getTextBarItem:(NSString *)name target:(id)target action:(SEL)action {
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}];
     CGFloat iWidth = attString.size.width;
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -197,7 +228,7 @@ _Pragma("clang diagnostic pop") \
     return [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }
 
-- (UIBarButtonItem *)GetImageBarItem:(UIImage *)image target:(id)target action:(SEL)action {
+- (UIBarButtonItem *)getImageBarItem:(UIImage *)image target:(id)target action:(SEL)action {
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 50, 44);
     [rightBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
@@ -205,12 +236,23 @@ _Pragma("clang diagnostic pop") \
     return [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }
 
-- (void)AddTitleView:(UIView *)titleView {
-    self.navigationItem.titleView = titleView;
+- (void)addTitleView:(UIView *)titleView {
+    if (self.isCustomTopBar) {
+        [self.customTopBar addTitleView:titleView];
+    }else{
+        self.navigationItem.titleView = titleView;
+    }
 }
 
+- (void)hiddenNavagationView{
+    self.customTopBar.hidden = YES;
+}
 
-
+- (void)setNavigationAlaph:(CGFloat)alpha{
+    if (self.customTopBar) {
+        [self.customTopBar setNavigationAlaph:alpha];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

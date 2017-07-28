@@ -20,9 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self UsePureColorNavigationBack:[UIColor cyanColor]];
-    [self AddLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
-    [self AddRightTextBtn:@"下一个" target:self action:@selector(Next:)];
+    [self useCustomNavigationBar:[UIColor cyanColor]];
+    [self setTitle:@"第三页"];
+    [self addLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
+    [self addRightTextBtn:@"下一个" target:self action:@selector(Next:)];
     self.customTopBar.alpha = 1;
 }
 - (IBAction)previous:(id)sender {

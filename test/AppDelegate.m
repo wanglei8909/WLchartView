@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseViewController.h"
+#import "HNBaseViewController.h"
 #import "OneViewController.h"
+#import "HNNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +25,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *nCtrl = [[UINavigationController alloc] initWithRootViewController:[[OneViewController alloc] init]];
+    UINavigationController *nCtrl = [[HNNavigationController alloc] initWithRootViewController:[[OneViewController alloc] init]];
     self.window.rootViewController = nCtrl;
     return YES;
 }

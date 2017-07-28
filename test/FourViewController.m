@@ -18,9 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self UseImageNavigationBack];
-    [self AddLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
-    [self AddRightTextBtn:@"回到首页" target:self action:@selector(GoHome)];
+    [self useNativeNavigationBar];
+    [self setMTitleColor:[UIColor blueColor]];
+    [self setTitle:@"第四页"];
+    [self addLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
+    [self addRightTextBtn:@"回到首页" target:self action:@selector(goHome)];
 }
 - (IBAction)previous:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

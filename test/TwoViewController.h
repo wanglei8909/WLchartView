@@ -6,8 +6,8 @@
 //  Copyright © 2017年 wanglei. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "HNBaseViewController.h"
 
-@interface TwoViewController : BaseViewController
+@interface TwoViewController : HNBaseViewController
 
 @end

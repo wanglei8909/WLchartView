@@ -8,6 +8,7 @@
 
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
+#import "TestDrawView.h"
 
 @interface TwoViewController ()
 
@@ -20,10 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self UsePureColorNavigationBack:[UIColor redColor]];
+    [self useNativeNavigationBar];
+    [self setTitle:@"第二页"];
+    [self addLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
+    [self addRightTextBtn:@"下一个" target:self action:@selector(Next:)];
     
-    [self AddLeftTextBtn:@"上一个" target:self action:@selector(previous:)];
-    [self AddRightTextBtn:@"下一个" target:self action:@selector(Next:)];
+    TestDrawView *view = [[TestDrawView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 300)];
+    [self.view addSubview:view];
+    [view startAnimation];
+    
+}
+- (void)click{
+    NSLog(@"click");
 }
 - (IBAction)previous:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9B300F0F1F22F283004E98A3 /* GrdientCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B300F0E1F22F283004E98A3 /* GrdientCircleView.m */; };
+		9B32319D1F29D92A006C3D20 /* HNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B32319C1F29D92A006C3D20 /* HNNavigationController.m */; };
+		9B3231C61F2B1D46006C3D20 /* TestDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3231C51F2B1D46006C3D20 /* TestDrawView.m */; };
 		9B78BDF01F21A7C300AC0CEE /* StockCircleItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B78BDEF1F21A7C300AC0CEE /* StockCircleItems.m */; };
 		9B78BDF31F21E70900AC0CEE /* SunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B78BDF21F21E70900AC0CEE /* SunViewController.m */; };
 		9B82BA591F203AEC00F612A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BA581F203AEC00F612A5 /* main.m */; };
@@ -15,9 +17,9 @@
 		9B82BA641F203AEC00F612A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B82BA631F203AEC00F612A5 /* Assets.xcassets */; };
 		9B82BA721F203AED00F612A5 /* testTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BA711F203AED00F612A5 /* testTests.m */; };
 		9B82BA7D1F203AED00F612A5 /* testUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BA7C1F203AED00F612A5 /* testUITests.m */; };
-		9B82BA8C1F203B0900F612A5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BA8B1F203B0900F612A5 /* BaseViewController.m */; };
+		9B82BA8C1F203B0900F612A5 /* HNBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BA8B1F203B0900F612A5 /* HNBaseViewController.m */; };
 		9B82BACD1F203E9500F612A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B82BACC1F203E9500F612A5 /* LaunchScreen.storyboard */; };
-		9B82BAD01F20574200F612A5 /* BaseNavgationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BACF1F20574200F612A5 /* BaseNavgationView.m */; };
+		9B82BAD01F20574200F612A5 /* HNBaseNavgationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BACF1F20574200F612A5 /* HNBaseNavgationView.m */; };
 		9B82BAE41F20598E00F612A5 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BAE21F20598E00F612A5 /* OneViewController.m */; };
 		9B82BAE51F20598E00F612A5 /* OneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B82BAE31F20598E00F612A5 /* OneViewController.xib */; };
 		9B82BAE91F20599A00F612A5 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82BAE71F20599A00F612A5 /* TwoViewController.m */; };
@@ -50,6 +52,10 @@
 /* Begin PBXFileReference section */
 		9B300F0D1F22F283004E98A3 /* GrdientCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrdientCircleView.h; sourceTree = "<group>"; };
 		9B300F0E1F22F283004E98A3 /* GrdientCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrdientCircleView.m; sourceTree = "<group>"; };
+		9B32319B1F29D92A006C3D20 /* HNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNNavigationController.h; sourceTree = "<group>"; };
+		9B32319C1F29D92A006C3D20 /* HNNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNNavigationController.m; sourceTree = "<group>"; };
+		9B3231C41F2B1D46006C3D20 /* TestDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDrawView.h; sourceTree = "<group>"; };
+		9B3231C51F2B1D46006C3D20 /* TestDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDrawView.m; sourceTree = "<group>"; };
 		9B78BDEE1F21A7C300AC0CEE /* StockCircleItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockCircleItems.h; sourceTree = "<group>"; };
 		9B78BDEF1F21A7C300AC0CEE /* StockCircleItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockCircleItems.m; sourceTree = "<group>"; };
 		9B78BDF11F21E70900AC0CEE /* SunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunViewController.h; sourceTree = "<group>"; };
@@ -66,11 +72,11 @@
 		9B82BA781F203AED00F612A5 /* testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B82BA7C1F203AED00F612A5 /* testUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testUITests.m; sourceTree = "<group>"; };
 		9B82BA7E1F203AED00F612A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B82BA8A1F203B0900F612A5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		9B82BA8B1F203B0900F612A5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9B82BA8A1F203B0900F612A5 /* HNBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBaseViewController.h; sourceTree = "<group>"; };
+		9B82BA8B1F203B0900F612A5 /* HNBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBaseViewController.m; sourceTree = "<group>"; };
 		9B82BACC1F203E9500F612A5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9B82BACE1F20574200F612A5 /* BaseNavgationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavgationView.h; sourceTree = "<group>"; };
-		9B82BACF1F20574200F612A5 /* BaseNavgationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavgationView.m; sourceTree = "<group>"; };
+		9B82BACE1F20574200F612A5 /* HNBaseNavgationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNBaseNavgationView.h; sourceTree = "<group>"; };
+		9B82BACF1F20574200F612A5 /* HNBaseNavgationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNBaseNavgationView.m; sourceTree = "<group>"; };
 		9B82BAE11F20598E00F612A5 /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		9B82BAE21F20598E00F612A5 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		9B82BAE31F20598E00F612A5 /* OneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneViewController.xib; sourceTree = "<group>"; };
@@ -139,12 +145,16 @@
 			children = (
 				9B82BA5A1F203AEC00F612A5 /* AppDelegate.h */,
 				9B82BA5B1F203AEC00F612A5 /* AppDelegate.m */,
-				9B82BA8A1F203B0900F612A5 /* BaseViewController.h */,
-				9B82BA8B1F203B0900F612A5 /* BaseViewController.m */,
-				9B82BACE1F20574200F612A5 /* BaseNavgationView.h */,
-				9B82BACF1F20574200F612A5 /* BaseNavgationView.m */,
+				9B82BA8A1F203B0900F612A5 /* HNBaseViewController.h */,
+				9B82BA8B1F203B0900F612A5 /* HNBaseViewController.m */,
+				9B82BACE1F20574200F612A5 /* HNBaseNavgationView.h */,
+				9B82BACF1F20574200F612A5 /* HNBaseNavgationView.m */,
+				9B32319B1F29D92A006C3D20 /* HNNavigationController.h */,
+				9B32319C1F29D92A006C3D20 /* HNNavigationController.m */,
 				9B82BAE11F20598E00F612A5 /* OneViewController.h */,
 				9B82BAE21F20598E00F612A5 /* OneViewController.m */,
+				9B3231C41F2B1D46006C3D20 /* TestDrawView.h */,
+				9B3231C51F2B1D46006C3D20 /* TestDrawView.m */,
 				9B82BAE31F20598E00F612A5 /* OneViewController.xib */,
 				9B82BAE61F20599A00F612A5 /* TwoViewController.h */,
 				9B82BAE71F20599A00F612A5 /* TwoViewController.m */,
@@ -336,17 +346,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B82BA8C1F203B0900F612A5 /* BaseViewController.m in Sources */,
+				9B82BA8C1F203B0900F612A5 /* HNBaseViewController.m in Sources */,
 				9B82BAEE1F2059A700F612A5 /* ThreeViewController.m in Sources */,
 				9B82BAF31F2059B300F612A5 /* FourViewController.m in Sources */,
 				9B82BAE41F20598E00F612A5 /* OneViewController.m in Sources */,
 				9B85C62F1F21898600BAA926 /* StockRectChartView.m in Sources */,
+				9B3231C61F2B1D46006C3D20 /* TestDrawView.m in Sources */,
 				9B82BA5C1F203AEC00F612A5 /* AppDelegate.m in Sources */,
 				9B82BAE91F20599A00F612A5 /* TwoViewController.m in Sources */,
+				9B32319D1F29D92A006C3D20 /* HNNavigationController.m in Sources */,
 				9B85C62C1F21895A00BAA926 /* StockCircleChartView.m in Sources */,
 				9B82BA591F203AEC00F612A5 /* main.m in Sources */,
 				9B78BDF01F21A7C300AC0CEE /* StockCircleItems.m in Sources */,
-				9B82BAD01F20574200F612A5 /* BaseNavgationView.m in Sources */,
+				9B82BAD01F20574200F612A5 /* HNBaseNavgationView.m in Sources */,
 				9B300F0F1F22F283004E98A3 /* GrdientCircleView.m in Sources */,
 				9B78BDF31F21E70900AC0CEE /* SunViewController.m in Sources */,
 			);

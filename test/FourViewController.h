@@ -6,8 +6,8 @@
 //  Copyright © 2017年 wanglei. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "HNBaseViewController.h"
 
-@interface FourViewController : BaseViewController
+@interface FourViewController : HNBaseViewController
 
 @end

@@ -22,7 +22,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     NSArray *startColors = @[[UIColor colorWithRed:255/255.f green:8/255.f  blue:68/255.f  alpha:1],
                              [UIColor colorWithRed:162/255.f green:234/255.f  blue:132/255.f  alpha:1],
                              [UIColor colorWithRed:168/255.f green:214/255.f  blue:93/255.f  alpha:1],
@@ -55,13 +54,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self UseImageNavigationBack];
-    [self AddRightTextBtn:@"下一页" target:self action:@selector(Next:)];
+    [self useNativeNavigationBar];
+    [self setTitle:@"第一页"];
+    [self addRightTextBtn:@"下一页" target:self action:@selector(Next:)];
     
 }
 
 - (IBAction)Next:(id)sender {
-    SunViewController *ctrl = [[SunViewController alloc] init];
+    TwoViewController *ctrl = [[TwoViewController alloc] init];
     [self.navigationController pushViewController:ctrl animated:YES];
 }
 

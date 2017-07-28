@@ -1,28 +1,29 @@
 //
-//  SunViewController.m
+//  HNNavigationController.m
 //  test
 //
-//  Created by wanglei on 2017/7/21.
+//  Created by wanglei on 2017/7/27.
 //  Copyright © 2017年 wanglei. All rights reserved.
 //
 
-#import "SunViewController.h"
+#import "HNNavigationController.h"
 
-@interface SunViewController ()
+@interface HNNavigationController ()
 
 @end
 
-@implementation SunViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
+@implementation HNNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self useNativeNavigationBar];
-    self.view.backgroundColor = [UIColor grayColor];
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [super pushViewController:viewController animated:animated];
+    if (self.viewControllers.count) {
+        [viewController setHidesBottomBarWhenPushed:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
