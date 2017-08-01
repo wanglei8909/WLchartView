@@ -19,12 +19,7 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [super pushViewController:viewController animated:animated];
-    if (self.viewControllers.count) {
-        [viewController setHidesBottomBarWhenPushed:YES];
-    }
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
